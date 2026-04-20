@@ -54,20 +54,6 @@ if grep -q "^SECRET_KEY=change-me\|^SECRET_KEY=$\|^SECRET_KEY=your-" backend/.en
   fi
 fi
 
-# Set local hostname so resolvent.local works on the network
-if [[ "$(uname)" == "Darwin" ]]; then
-  if [ "$(scutil --get LocalHostName 2>/dev/null)" != "resolvent" ]; then
-    echo ""
-    echo "Setting local hostname to 'resolvent' (enables resolvent.local on your network)..."
-    sudo scutil --set LocalHostName resolvent
-  fi
-elif [[ "$(uname)" == "Linux" ]]; then
-  if [ "$(hostname)" != "resolvent" ]; then
-    echo ""
-    echo "Setting hostname to 'resolvent' (enables resolvent.local on your network)..."
-    sudo hostnamectl set-hostname resolvent
-  fi
-fi
 
 echo ""
 echo "Starting Resolvent..."

@@ -209,31 +209,14 @@ docker compose up -d
 
 Both services build and start. The frontend waits for the backend health check before coming up.
 
-### 3. Set a local hostname (recommended, one-time)
-
-Give the host machine a memorable `.local` address so every device on the network can reach Resolvent at the same URL regardless of IP changes.
-
-**macOS**
-```bash
-sudo scutil --set LocalHostName resolvent
-```
-
-**Linux** (requires `avahi-daemon`, installed by default on most distros)
-```bash
-sudo hostnamectl set-hostname resolvent
-```
-
-After this, `resolvent.local` resolves automatically on all devices via mDNS/Bonjour — no DNS server, no `/etc/hosts` edits, no IP lookup needed. Works on macOS, iOS, Android, Linux, and Windows 10+.
-
-### 4. Connect
+### 3. Connect
 
 | From | URL |
 |---|---|
 | Same machine | `http://localhost:3000` |
-| Any device on the network (after step 3) | `http://resolvent.local:3000` |
-| Any device on the network (without step 3) | `http://<host-ip>:3000` |
+| Any device on the network | `http://<host-ip>:3000` |
 
-To find the raw IP if needed:
+To find your IP:
 
 ```bash
 # macOS
