@@ -29,7 +29,7 @@ if [ ! -f backend/.env ]; then
 fi
 
 # Prompt for API key if not already set
-if ! grep -q "^ANTHROPIC_API_KEY=sk-" backend/.env 2>/dev/null; then
+if ! grep -qE "^ANTHROPIC_API_KEY=sk-[^.]{10}" backend/.env 2>/dev/null; then
   echo ""
   echo "Enter your Anthropic API key (starts with sk-ant-):"
   read -r api_key
