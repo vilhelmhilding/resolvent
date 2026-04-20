@@ -37,12 +37,12 @@ function IdentifiedPreview({ latex, lang }: { latex: string; lang: string }) {
   const ref = useRef<HTMLDivElement>(null)
 
   function scaleEq() {
-    const box = ref.current?.querySelector<HTMLElement>('.loading-identified-eq')
+    const box = ref.current
     if (!box) return
     const mjx = box.querySelector<HTMLElement>('mjx-container')
     if (!mjx) return
     mjx.style.zoom = ''
-    const avail = box.clientWidth - 40
+    const avail = box.clientWidth - 48
     if (mjx.scrollWidth > avail) mjx.style.zoom = String(avail / mjx.scrollWidth)
   }
 
