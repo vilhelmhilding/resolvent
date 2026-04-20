@@ -104,11 +104,11 @@ Handles any area of mathematics: calculus, complex analysis, PDEs, Fourier analy
 
 ### Convergent series
 
-<video src="demos/demo1.mp4" controls width="100%"></video>
+![Convergent series](demos/demo1.gif)
 
 ### Fourier series
 
-<video src="demos/demo2.mp4" controls width="100%"></video>
+![Fourier series](demos/demo2.gif)
 
 ---
 
