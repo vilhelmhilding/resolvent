@@ -1,0 +1,46 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build:
+    name: Build Docker images
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: false
+          tags: resolvent-backend:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: false
+          tags: resolvent-frontend:ci
+          build-args: |
+            BACKEND_URL=http://backend:8000
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke test with docker compose
+        run: |
+          cp backend/.env.example backend/.env
+          docker compose up -d --wait --timeout 60
+          curl -sf http://localhost:8000/health
+          curl -sf http://localhost:3000
+          docker compose down

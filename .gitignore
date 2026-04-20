@@ -1,0 +1,14 @@
+.env
+*.db
+__pycache__/
+*.pyc
+*.pid
+.venv/
+venv/
+.DS_Store
+*.egg-info/
+.next/
+node_modules/
+.idea/
+.vscode/
+.claude
