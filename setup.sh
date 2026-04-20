@@ -62,8 +62,8 @@ docker compose up -d --build
 echo ""
 echo "${GREEN}${BOLD}Done!${RESET}"
 echo ""
-echo "  Local:            http://localhost:3000"
-echo "  Network (mDNS):   http://resolvent.local:3000"
+echo "  Local:    http://localhost:3000"
+echo "  Network:  http://$(hostname -I 2>/dev/null | awk '{print $1}' || echo '<host-ip>'):3000"
 echo ""
 
 # Open browser
